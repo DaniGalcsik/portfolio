@@ -1,0 +1,46 @@
+[
+  {
+    "id": "uni",
+    "type": "education",
+    "title": "BSc Computer Science",
+    "organization": "Neumann János University",
+    "location": "Kecskemét, Hungary",
+    "startDate": "2022-09",
+    "endDate": "Present",
+    "description": "Studying Computer Science with a focus on software development, algorithms, and web technologies. Active member of the university coding club.",
+    "tags": ["Algorithms", "OOP", "Web Dev", "Databases"]
+  },
+  {
+    "id": "freelance2",
+    "type": "work",
+    "title": "Freelance Web Developer",
+    "organization": "Self-employed",
+    "location": "Remote, Hungary",
+    "startDate": "2023-06",
+    "endDate": "Present",
+    "description": "Building websites and web apps for local Hungarian businesses. Clients include a dance studio, a bounce castle rental company, and a local restaurant.",
+    "tags": ["Next.js", "React", "Tailwind CSS", "Client Work"]
+  },
+  {
+    "id": "dancefitness-project",
+    "type": "project",
+    "title": "DanceFitness Platform",
+    "organization": "Personal Project",
+    "location": "Remote",
+    "startDate": "2023-09",
+    "endDate": "2024-01",
+    "description": "Designed and developed a full-featured dance fitness web application with scheduling, booking, and instructor profiles.",
+    "tags": ["Next.js", "Vercel", "Full-stack"]
+  },
+  {
+    "id": "highschool",
+    "type": "education",
+    "title": "IT Technical High School",
+    "organization": "Jedlik Ányos Technical School",
+    "location": "Hungary",
+    "startDate": "2018-09",
+    "endDate": "2022-06",
+    "description": "Graduated with honours in IT specialisation. First experience with programming: Pascal, C, then jumping straight into web technologies.",
+    "tags": ["C", "Pascal", "Networking", "IT Fundamentals"]
+  }
+]

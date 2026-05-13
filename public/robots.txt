@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://danikovacs.dev/sitemap.xml

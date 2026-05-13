@@ -1,0 +1,40 @@
+{
+  "name": "Dani",
+  "fullName": "Kovács Dániel",
+  "title": "IT Student & Frontend Developer",
+  "location": "Hungary",
+  "email": "kovacs.daniel@example.hu",
+  "phone": "+36 30 123 4567",
+  "bio": "Szia! I'm a passionate Hungarian IT student who loves building beautiful, performant web experiences. From crafting pixel-perfect UIs to diving deep into backend logic, I bring ideas to life with clean code and creative solutions.",
+  "bioExtended": "When I'm not coding, you'll find me gaming, listening to lo-fi beats, or debugging something I shouldn't have touched in the first place. I believe great software is a blend of engineering and art — and I'm here to master both.",
+  "avatar": "/assets/sample.png",
+  "cv": "/cv.pdf",
+  "stats": {
+    "projects": 12,
+    "commits": 847,
+    "coffee": 1337
+  },
+  "funFacts": [
+    {
+      "front": "🎮 Gamer",
+      "back": "I've sunk 2,000+ hours into strategy games. Chess taught me to think 5 moves ahead — in code too."
+    },
+    {
+      "front": "☕ Coffee Addict",
+      "back": "My daily fuel is 3 cups of strong Hungarian coffee. Instant is not coffee. Fight me."
+    },
+    {
+      "front": "🇭🇺 Proud Hungarian",
+      "back": "Born and raised in Hungary. We invented the Rubik's Cube, the ballpoint pen, and apparently me."
+    },
+    {
+      "front": "🌙 Night Owl",
+      "back": "Peak productivity: 11 PM – 3 AM. My best code gets written when the world is asleep."
+    }
+  ],
+  "socialLinks": [
+    { "platform": "GitHub", "url": "https://github.com/daniko", "icon": "github" },
+    { "platform": "LinkedIn", "url": "https://linkedin.com/in/daniko", "icon": "linkedin" },
+    { "platform": "Email", "url": "mailto:kovacs.daniel@example.hu", "icon": "mail" }
+  ]
+}

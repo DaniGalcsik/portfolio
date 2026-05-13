@@ -1,0 +1,247 @@
+/* ============================================
+   Global Styles — Dani Portfolio
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ---- CSS Variables ---- */
+:root {
+  --bg: #020818;
+  --bg-card: rgba(9, 20, 50, 0.6);
+  --cyan: #00f5ff;
+  --purple: #a855f7;
+  --text: #e2e8f0;
+  --text-muted: #64748b;
+  --border: rgba(0, 245, 255, 0.15);
+}
+
+/* ---- Base Reset ---- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  cursor: none; /* Custom cursor replaces default */
+  overflow-x: hidden;
+}
+
+body {
+  min-height: 100vh;
+  background-color: #020818;
+  /* Noise grain texture overlay */
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  background-attachment: fixed;
+}
+
+/* ---- Skip to content (accessibility) ---- */
+.skip-to-content {
+  position: absolute;
+  top: -9999px;
+  left: 0;
+  z-index: 9999;
+  padding: 8px 16px;
+  background: var(--cyan);
+  color: #020818;
+  font-weight: 700;
+  border-radius: 0 0 8px 0;
+  transition: top 0.2s;
+}
+.skip-to-content:focus {
+  top: 0;
+}
+
+/* ---- Typography ---- */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+/* ---- Scrollbar ---- */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #020818;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--cyan);
+  border-radius: 3px;
+  opacity: 0.5;
+}
+
+/* ---- Selection ---- */
+::selection {
+  background: rgba(0, 245, 255, 0.25);
+  color: #ffffff;
+}
+
+/* ---- Glassmorphism card ---- */
+.glass-card {
+  background: rgba(9, 20, 50, 0.55);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 245, 255, 0.12);
+  border-radius: 16px;
+}
+
+/* ---- Glow text ---- */
+.text-glow-cyan {
+  text-shadow: 0 0 20px rgba(0, 245, 255, 0.6), 0 0 40px rgba(0, 245, 255, 0.3);
+}
+.text-glow-purple {
+  text-shadow: 0 0 20px rgba(168, 85, 247, 0.6), 0 0 40px rgba(168, 85, 247, 0.3);
+}
+
+/* ---- Gradient text ---- */
+.gradient-text {
+  background: linear-gradient(135deg, #00f5ff, #a855f7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ---- Glitch effect ---- */
+.glitch-wrapper {
+  position: relative;
+  display: inline-block;
+}
+.glitch-wrapper::before,
+.glitch-wrapper::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+.glitch-wrapper:hover::before {
+  animation: glitch 0.4s steps(2, end) infinite;
+  color: #00f5ff;
+  opacity: 0.8;
+  z-index: -1;
+}
+.glitch-wrapper:hover::after {
+  animation: glitch 0.4s steps(2, end) 0.1s infinite;
+  color: #a855f7;
+  opacity: 0.8;
+  z-index: -2;
+}
+
+@keyframes glitch {
+  0%   { clip-path: inset(40% 0 61% 0); transform: translate(-2px, 2px); }
+  20%  { clip-path: inset(92% 0 1% 0);  transform: translate(1px, -1px); }
+  40%  { clip-path: inset(43% 0 1% 0);  transform: translate(2px, 3px); }
+  60%  { clip-path: inset(25% 0 58% 0); transform: translate(-2px, 0px); }
+  80%  { clip-path: inset(54% 0 7% 0);  transform: translate(3px, 2px); }
+  100% { clip-path: inset(58% 0 43% 0); transform: translate(-3px, -1px); }
+}
+
+/* ---- Scanline effect (for terminal/game UI) ---- */
+.scanline-overlay {
+  position: relative;
+  overflow: hidden;
+}
+.scanline-overlay::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.08) 2px,
+    rgba(0, 0, 0, 0.08) 4px
+  );
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* ---- Button ripple ---- */
+.btn-ripple {
+  position: relative;
+  overflow: hidden;
+}
+.btn-ripple::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  width: 0;
+  height: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(255, 255, 255, 0.25);
+  transition: width 0.5s ease, height 0.5s ease, opacity 0.5s ease;
+  opacity: 0;
+}
+.btn-ripple:active::after {
+  width: 200px;
+  height: 200px;
+  opacity: 0;
+  transition: 0s;
+}
+
+/* ---- Timeline alternating ---- */
+.timeline-item:nth-child(even) .timeline-content {
+  margin-left: auto;
+}
+
+/* ---- Floating label form ---- */
+.floating-label {
+  position: relative;
+}
+.floating-label input,
+.floating-label textarea {
+  padding: 20px 16px 8px;
+}
+.floating-label label {
+  position: absolute;
+  top: 14px;
+  left: 16px;
+  transition: all 0.2s ease;
+  pointer-events: none;
+  color: var(--text-muted);
+}
+.floating-label input:focus + label,
+.floating-label input:not(:placeholder-shown) + label,
+.floating-label textarea:focus + label,
+.floating-label textarea:not(:placeholder-shown) + label {
+  top: 4px;
+  font-size: 0.7rem;
+  color: var(--cyan);
+}
+
+/* ---- Reduced motion overrides ---- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ---- Light mode ---- */
+.light {
+  --bg: #f0f4ff;
+  --bg-card: rgba(255, 255, 255, 0.7);
+  --text: #0f172a;
+  --text-muted: #475569;
+  --border: rgba(99, 102, 241, 0.2);
+}
+.light body {
+  background-color: #f0f4ff;
+  color: #0f172a;
+}

@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 120" width="400" height="120" role="img" aria-label="Animated dancing stick figures">
+  <style>
+    /* Base dancer styles */
+    .dancer { stroke: #ec4899; stroke-width="2.5" fill="none"; stroke-linecap="round"; stroke-linejoin="round"; }
+    .dancer-head { fill: #ec4899; stroke: none; }
+
+    /* Dancer 1 — sways left/right, arms up */
+    @keyframes sway1 {
+      0%,100% { transform: rotate(-8deg) translateX(-4px); }
+      50%      { transform: rotate(8deg) translateX(4px); }
+    }
+    @keyframes armL1 {
+      0%,100% { transform: rotate(-30deg); }
+      50%      { transform: rotate(30deg); }
+    }
+    @keyframes armR1 {
+      0%,100% { transform: rotate(30deg); }
+      50%      { transform: rotate(-30deg); }
+    }
+    @keyframes legL1 {
+      0%,100% { transform: rotate(20deg); }
+      50%      { transform: rotate(-20deg); }
+    }
+    @keyframes legR1 {
+      0%,100% { transform: rotate(-20deg); }
+      50%      { transform: rotate(20deg); }
+    }
+
+    /* Dancer 2 — slightly out of phase */
+    @keyframes sway2 {
+      0%,100% { transform: rotate(6deg) translateX(3px); }
+      50%      { transform: rotate(-6deg) translateX(-3px); }
+    }
+
+    /* Dancer 3 — bouncy */
+    @keyframes bounce3 {
+      0%,100% { transform: translateY(0px); }
+      50%      { transform: translateY(-10px); }
+    }
+
+    .d1-body { animation: sway1 0.8s ease-in-out infinite; transform-origin: 60px 60px; }
+    .d2-body { animation: sway2 0.8s ease-in-out 0.2s infinite; transform-origin: 200px 60px; }
+    .d3-body { animation: bounce3 0.8s ease-in-out 0.4s infinite; transform-origin: 340px 60px; }
+
+    /* Speed up on .dancers-fast class (applied via JS on hover) */
+    .dancers-fast .d1-body { animation-duration: 0.4s !important; }
+    .dancers-fast .d2-body { animation-duration: 0.4s !important; }
+    .dancers-fast .d3-body { animation-duration: 0.4s !important; }
+  </style>
+
+  <!-- Dancer 1 -->
+  <g class="d1-body dancer">
+    <!-- Head -->
+    <circle class="dancer-head" cx="60" cy="28" r="10"/>
+    <!-- Body -->
+    <line x1="60" y1="38" x2="60" y2="72" stroke="#ec4899" stroke-width="2.5"/>
+    <!-- Left arm -->
+    <line x1="60" y1="48" x2="38" y2="38" stroke="#ec4899" stroke-width="2.5"/>
+    <!-- Right arm -->
+    <line x1="60" y1="48" x2="82" y2="38" stroke="#ec4899" stroke-width="2.5"/>
+    <!-- Left leg -->
+    <line x1="60" y1="72" x2="44" y2="96" stroke="#ec4899" stroke-width="2.5"/>
+    <!-- Right leg -->
+    <line x1="60" y1="72" x2="76" y2="96" stroke="#ec4899" stroke-width="2.5"/>
+  </g>
+
+  <!-- Dancer 2 -->
+  <g class="d2-body dancer">
+    <circle class="dancer-head" cx="200" cy="28" r="10"/>
+    <line x1="200" y1="38" x2="200" y2="72" stroke="#a855f7" stroke-width="2.5"/>
+    <line x1="200" y1="48" x2="178" y2="33" stroke="#a855f7" stroke-width="2.5"/>
+    <line x1="200" y1="48" x2="222" y2="33" stroke="#a855f7" stroke-width="2.5"/>
+    <line x1="200" y1="72" x2="184" y2="96" stroke="#a855f7" stroke-width="2.5"/>
+    <line x1="200" y1="72" x2="216" y2="96" stroke="#a855f7" stroke-width="2.5"/>
+  </g>
+
+  <!-- Dancer 3 -->
+  <g class="d3-body dancer">
+    <circle cx="340" cy="28" r="10" fill="#f472b6" stroke="none"/>
+    <line x1="340" y1="38" x2="340" y2="72" stroke="#f472b6" stroke-width="2.5"/>
+    <line x1="340" y1="48" x2="316" y2="44" stroke="#f472b6" stroke-width="2.5"/>
+    <line x1="340" y1="48" x2="364" y2="44" stroke="#f472b6" stroke-width="2.5"/>
+    <line x1="340" y1="72" x2="324" y2="96" stroke="#f472b6" stroke-width="2.5"/>
+    <line x1="340" y1="72" x2="356" y2="96" stroke="#f472b6" stroke-width="2.5"/>
+  </g>
+
+  <!-- Musical notes (decorative) -->
+  <text x="130" y="30" font-size="18" fill="#ec4899" opacity="0.6">♪</text>
+  <text x="265" y="50" font-size="14" fill="#a855f7" opacity="0.5">♫</text>
+  <text x="15"  y="55" font-size="12" fill="#f472b6" opacity="0.4">♩</text>
+  <text x="374" y="35" font-size="16" fill="#ec4899" opacity="0.5">♬</text>
+</svg>

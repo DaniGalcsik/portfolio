@@ -1,0 +1,33 @@
+{
+  "frontend": [
+    { "name": "React", "icon": "react", "level": 90 },
+    { "name": "Next.js", "icon": "nextjs", "level": 85 },
+    { "name": "TypeScript", "icon": "typescript", "level": 80 },
+    { "name": "Tailwind CSS", "icon": "tailwindcss", "level": 88 },
+    { "name": "Framer Motion", "icon": "framer", "level": 75 },
+    { "name": "HTML5", "icon": "html5", "level": 95 },
+    { "name": "CSS3", "icon": "css3", "level": 92 }
+  ],
+  "backend": [
+    { "name": "Node.js", "icon": "nodejs", "level": 72 },
+    { "name": "Express", "icon": "express", "level": 68 },
+    { "name": "PostgreSQL", "icon": "postgresql", "level": 65 },
+    { "name": "MongoDB", "icon": "mongodb", "level": 60 },
+    { "name": "REST APIs", "icon": "fastapi", "level": 75 }
+  ],
+  "tools": [
+    { "name": "Git", "icon": "git", "level": 85 },
+    { "name": "GitHub", "icon": "github", "level": 88 },
+    { "name": "VS Code", "icon": "vscode", "level": 95 },
+    { "name": "Docker", "icon": "docker", "level": 55 },
+    { "name": "Figma", "icon": "figma", "level": 70 },
+    { "name": "Vercel", "icon": "vercel", "level": 80 }
+  ],
+  "languages": [
+    { "name": "JavaScript", "icon": "javascript", "level": 88 },
+    { "name": "TypeScript", "icon": "typescript", "level": 80 },
+    { "name": "Python", "icon": "python", "level": 65 },
+    { "name": "Java", "icon": "java", "level": 60 },
+    { "name": "C#", "icon": "csharp", "level": 55 }
+  ]
+}
