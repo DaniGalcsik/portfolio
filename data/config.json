@@ -1,0 +1,28 @@
+{
+  "name": "Dani",
+  "fullName": "Kovács Dániel",
+  "title": "IT Student & Frontend Developer",
+  "tagline": "Building beautiful, performant web experiences from Hungary 🇭🇺",
+  "roles": [
+    "Frontend Developer",
+    "IT Student",
+    "Problem Solver",
+    "Gamer",
+    "Coffee Addict"
+  ],
+  "email": "kovacs.daniel@example.hu",
+  "github": "https://github.com/daniko",
+  "linkedin": "https://linkedin.com/in/daniko",
+  "cvPath": "/cv.pdf",
+  "ogImage": "/assets/sample.png",
+  "siteUrl": "https://danikovacs.dev",
+  "footerCredit": "Built with ❤️ and too much coffee",
+  "theme": {
+    "accentCyan": "#00f5ff",
+    "accentPurple": "#a855f7",
+    "bg": "#020818",
+    "surface": "rgba(9, 20, 50, 0.6)",
+    "text": "#e2e8f0",
+    "muted": "#64748b"
+  }
+}
