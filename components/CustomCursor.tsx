@@ -1,74 +1,69 @@
 // Custom animated cursor that reacts to hoverable elements
 'use client';
 
-import { useEffect, useRef } from 'react';
-import { useMousePosition } from '@/hooks/useMousePosition';
+import { useEffect, useRef, useState } from 'react';
 import { motion, useMotionValue, useSpring } from 'framer-motion';
 
 export default function CustomCursor() {
-  const { x, y } = useMousePosition();
-  const isHovering = useRef(false);
+  // Only visible after mount on non-touch devices (avoids SSR/hydration mismatch)
+  const [visible, setVisible] = useState(false);
 
-  // Smoothly spring the cursor position
+  // Outer ring: spring-smoothed position + scale
   const cursorX = useMotionValue(-100);
   const cursorY = useMotionValue(-100);
   const springX = useSpring(cursorX, { stiffness: 500, damping: 28 });
   const springY = useSpring(cursorY, { stiffness: 500, damping: 28 });
+  const scaleValue = useMotionValue(1);
+  const springScale = useSpring(scaleValue, { stiffness: 400, damping: 25 });
 
-  // Dot follows exact position
+  // Inner dot: exact position (no spring)
   const dotX = useMotionValue(-100);
   const dotY = useMotionValue(-100);
 
-  const scale = useRef(1);
   const cursorRef = useRef<HTMLDivElement>(null);
 
+  // Track mouse directly via MotionValues — zero React re-renders on mouse move
   useEffect(() => {
-    cursorX.set(x - 20);
-    cursorY.set(y - 20);
-    dotX.set(x - 4);
-    dotY.set(y - 4);
-  }, [x, y, cursorX, cursorY, dotX, dotY]);
+    if (window.matchMedia('(pointer: coarse)').matches) return;
+    setVisible(true);
 
-  // Detect hoverable elements
+    const onMove = (e: MouseEvent) => {
+      cursorX.set(e.clientX - 20);
+      cursorY.set(e.clientY - 20);
+      dotX.set(e.clientX - 4);
+      dotY.set(e.clientY - 4);
+    };
+    window.addEventListener('mousemove', onMove, { passive: true });
+    return () => window.removeEventListener('mousemove', onMove);
+  }, [cursorX, cursorY, dotX, dotY]);
+
+  // Single delegated listener for hover detection (no per-element listeners)
   useEffect(() => {
-    const addHover = () => {
-      isHovering.current = true;
-      if (cursorRef.current) {
-        cursorRef.current.style.transform = `translate(${springX.get()}px, ${springY.get()}px) scale(1.8)`;
-        cursorRef.current.style.borderColor = '#a855f7';
-        cursorRef.current.style.backgroundColor = 'rgba(168,85,247,0.1)';
+    const onOver = (e: MouseEvent) => {
+      const hoverable = (e.target as Element).closest('a, button, [data-cursor]');
+      if (hoverable) {
+        scaleValue.set(1.8);
+        if (cursorRef.current) {
+          cursorRef.current.style.borderColor = '#a855f7';
+          cursorRef.current.style.backgroundColor = 'rgba(168,85,247,0.1)';
+        }
+      } else {
+        scaleValue.set(1);
+        if (cursorRef.current) {
+          cursorRef.current.style.borderColor = '#00f5ff';
+          cursorRef.current.style.backgroundColor = 'transparent';
+        }
       }
     };
-    const removeHover = () => {
-      isHovering.current = false;
-      if (cursorRef.current) {
-        cursorRef.current.style.borderColor = '#00f5ff';
-        cursorRef.current.style.backgroundColor = 'transparent';
-      }
-    };
+    document.addEventListener('mouseover', onOver, { passive: true });
+    return () => document.removeEventListener('mouseover', onOver);
+  }, [scaleValue]);
 
-    const targets = document.querySelectorAll('a, button, [data-cursor]');
-    targets.forEach((el) => {
-      el.addEventListener('mouseenter', addHover);
-      el.addEventListener('mouseleave', removeHover);
-    });
-
-    return () => {
-      targets.forEach((el) => {
-        el.removeEventListener('mouseenter', addHover);
-        el.removeEventListener('mouseleave', removeHover);
-      });
-    };
-  }, [springX, springY]);
-
-  // Don't render on touch devices
-  if (typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches) {
-    return null;
-  }
+  if (!visible) return null;
 
   return (
     <>
-      {/* Outer ring — springs behind */}
+      {/* Outer ring — springs behind, scale on hover */}
       <motion.div
         ref={cursorRef}
         style={{
@@ -83,7 +78,8 @@ export default function CustomCursor() {
           zIndex: 9999,
           x: springX,
           y: springY,
-          transition: 'border-color 0.2s, background-color 0.2s, transform 0.2s',
+          scale: springScale,
+          transition: 'border-color 0.2s, background-color 0.2s',
           mixBlendMode: 'difference',
         }}
       />

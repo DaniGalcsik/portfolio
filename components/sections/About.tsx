@@ -2,7 +2,7 @@
 'use client';
 
 import { useRef, useEffect, useState } from 'react';
-import { motion, useInView } from 'framer-motion';
+import { motion, useInView, useReducedMotion } from 'framer-motion';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import bioData from '@/data/bio.json';
@@ -160,6 +160,8 @@ function FlipCard({ front, back, delay }: { front: string; back: string; delay: 
 
 // --- Geometric animated avatar ---
 function GeometricAvatar() {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.8 }}
@@ -170,13 +172,13 @@ function GeometricAvatar() {
     >
       {/* Outer rotating ring */}
       <motion.div
-        animate={{ rotate: 360 }}
+        animate={shouldReduceMotion ? {} : { rotate: 360 }}
         transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
         className="absolute w-72 h-72 rounded-full border border-cyan-500/20"
         style={{ borderStyle: 'dashed' }}
       />
       <motion.div
-        animate={{ rotate: -360 }}
+        animate={shouldReduceMotion ? {} : { rotate: -360 }}
         transition={{ duration: 30, repeat: Infinity, ease: 'linear' }}
         className="absolute w-56 h-56 rounded-full border border-purple-500/20"
         style={{ borderStyle: 'dashed' }}
@@ -187,7 +189,7 @@ function GeometricAvatar() {
         <motion.svg
           viewBox="0 0 200 200"
           className="w-full h-full"
-          animate={{ rotate: [0, 5, -5, 0] }}
+          animate={shouldReduceMotion ? {} : { rotate: [0, 5, -5, 0] }}
           transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
         >
           <defs>
@@ -225,7 +227,7 @@ function GeometricAvatar() {
               left: `${parseFloat((50 + 48 * Math.cos((deg * Math.PI) / 180)).toFixed(4))}%`,
               transform: 'translate(-50%, -50%)',
             }}
-            animate={{ scale: [1, 1.5, 1], opacity: [0.4, 1, 0.4] }}
+            animate={shouldReduceMotion ? {} : { scale: [1, 1.5, 1], opacity: [0.4, 1, 0.4] }}
             transition={{ duration: 2, delay: i * 0.3, repeat: Infinity }}
           />
         ))}

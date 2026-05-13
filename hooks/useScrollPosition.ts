@@ -16,22 +16,29 @@ export function useScrollPosition(): ScrollState {
 
   useEffect(() => {
     let lastScrollY = window.scrollY;
+    let rafId: number | null = null;
 
     const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      const direction = currentScrollY > lastScrollY ? 'down' : 'up';
-
-      setScrollState({
-        scrollY: currentScrollY,
-        scrollDirection: direction,
-        isAtTop: currentScrollY < 10,
+      // Throttle to one update per animation frame
+      if (rafId !== null) return;
+      rafId = requestAnimationFrame(() => {
+        const currentScrollY = window.scrollY;
+        const direction = currentScrollY > lastScrollY ? 'down' : 'up';
+        setScrollState({
+          scrollY: currentScrollY,
+          scrollDirection: direction,
+          isAtTop: currentScrollY < 10,
+        });
+        lastScrollY = currentScrollY;
+        rafId = null;
       });
-
-      lastScrollY = currentScrollY;
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (rafId !== null) cancelAnimationFrame(rafId);
+    };
   }, []);
 
   return scrollState;

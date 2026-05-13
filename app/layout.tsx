@@ -43,6 +43,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* Preconnect to Google Fonts for performance */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        {/* Font stylesheet as <link> instead of CSS @import — non-render-blocking */}
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
+        />
       </head>
       <body className="font-body antialiased">
         {/* Skip to main content (keyboard accessibility) */}
